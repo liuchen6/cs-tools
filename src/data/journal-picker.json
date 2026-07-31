@@ -1,0 +1,76 @@
+{
+  "id": "journal-picker",
+  "type": "decision-flow",
+  "title": "期刊匹配器",
+  "subtitle": "2 个问题找到最适合你的发表路线",
+  "emoji": "📰",
+  "color": "#dc2626",
+  "tags": ["读研", "论文", "投稿"],
+  "description": "按毕业要求和预算，匹配最合适的期刊类型，附完整投稿路线。",
+  "steps": [
+    {
+      "question": "你学院的毕业要求是什么？",
+      "hint": "先看培养计划，这决定你要发什么级别",
+      "options": [
+        { "label": "无论文要求", "desc": "发不发都能毕业", "value": "none" },
+        { "label": "只需毕业", "desc": "有水刊/EI 级别就行", "value": "grad" },
+        { "label": "评奖评优", "desc": "需要能评国奖/奖学金的级别", "value": "award" },
+        { "label": "读博", "desc": "需要高质量论文申请博士", "value": "phd" }
+      ]
+    },
+    {
+      "question": "你的版面费预算是多少？",
+      "hint": "影响可选的期刊档次",
+      "options": [
+        { "label": "5000 以内", "desc": "尽量便宜", "value": "low" },
+        { "label": "1 万左右", "desc": "预算适中", "value": "mid" },
+        { "label": "3 万以上", "desc": "预算充足", "value": "high" }
+      ]
+    }
+  ],
+  "results": {
+    "recommend-none": {
+      "emoji": "😌",
+      "title": "没有硬性要求",
+      "desc": "你其实不用发论文也能毕业",
+      "reason": "没有论文硬性要求的话，把时间花在更有价值的事上：实习、刷题、备考。但如果学有余力，还是建议发一篇水刊——对写大论文有帮助，也是毕业的保底。",
+      "advice": "如果决定发：选 EI 会议或水刊，费用约 5000 元，1-3 个月出结果，性价比最高。"
+    },
+    "ei-conference": {
+      "emoji": "⚡",
+      "title": "EI 会议",
+      "desc": "最快最稳的毕业路线",
+      "reason": "EI 会议人工审 + 机器审（格式查重），格式正确 + 内容像样基本能过。费用约 5000 元，1-3 个月出结果。这是最推荐的水毕业路线。",
+      "advice": "方法：找已经收录的 EI 会议论文，模仿其结构和套路。注意：部分学校/导师不认 EI 会议作为毕业成果，投稿前先确认学院认可度。"
+    },
+    "water-journal": {
+      "emoji": "🌊",
+      "title": "水刊",
+      "desc": "最实惠的稳妥选择",
+      "reason": "水刊版面费适中（几千到 1 万）、审稿周期短（1-3 个月）、录用率高（>30%）。判断水刊标准：发文量激增、审稿快、在学校期刊分级中属低区。",
+      "advice": "水刊套路：方法一换药不换汤（已有方法换应用场景），方法二换汤不换药（细节微调套老框架）。投稿前确认学校认可该期刊。"
+    },
+    "sci-3": {
+      "emoji": "🏅",
+      "title": "SCI 三区及以上",
+      "desc": "评奖评优的稳妥选择",
+      "reason": "二三区是分水岭：三区及以上算正经 SCI，评国奖/奖学金基本够用。需要认真做实验和写作，周期相对较长（3-6 个月+）。",
+      "advice": "路线：找基准模型 → 加模块 → 做对比/消融/实例三个实验 → 写论文。必备三张图：摘要图 + 方法图 + 总结图。"
+    },
+    "sci-2": {
+      "emoji": "🎓",
+      "title": "SCI 二区以上",
+      "desc": "读博申请的核心指标",
+      "reason": "读博需要高质量论文，SCI 二区以上是硬指标。数量不重要，质量优先。同时要经营导师关系——博士申请需要强力引荐。",
+      "advice": "先确认：课题组有没有往届读博的师兄姐（证明导师有引荐能力）？你能否扛住高压？两条不满足，慎重考虑读博。"
+    },
+    "default": {
+      "emoji": "📖",
+      "title": "先确认毕业要求",
+      "desc": "发什么级别的论文，取决于学院要求",
+      "reason": "不同学校对毕业成果的认可差异很大，同一级别期刊在不同学校的认可度也不同。先看培养计划，再问往届师兄姐实际用的什么级别。",
+      "advice": "最快路径：找到学院毕业要求文件 + 问 2-3 个往届师兄姐，基本就能确定目标期刊级别。"
+    }
+  },
+  "logic": "stage:$none/recommend-none|stage:$grad,aim:$low/ei-conference|stage:$grad,aim:$mid/water-journal|stage:$grad,aim:$high/ei-conference|stage:$award,aim:$low/water-journal|stage:$award,aim:$mid/sci-3|stage:$award,aim:$high/sci-3|stage:$phd/sci-2|default:default"
+}

@@ -1,0 +1,71 @@
+{
+  "id": "mentor-type",
+  "type": "decision-flow",
+  "title": "导师类型推荐",
+  "subtitle": "3 个问题找到适合你的导师类型",
+  "emoji": "🧑‍🏫",
+  "color": "#2563eb",
+  "tags": ["读研", "选导师"],
+  "description": "不是找最好的导师，而是排除最烂的。先明确你的读研目标和抗压能力，再匹配导师类型。",
+  "steps": [
+    {
+      "question": "你读研的终极目标是什么？",
+      "hint": "目标不同，导师选择完全不同",
+      "options": [
+        { "label": "读博", "desc": "想走学术路线、继续深造", "value": "phd" },
+        { "label": "进厂", "desc": "毕业后去企业拿高薪", "value": "industry" },
+        { "label": "考公考编", "desc": "追求稳定、体制内就业", "value": "civil" },
+        { "label": "没想好", "desc": "走一步看一步", "value": "undecided" }
+      ]
+    },
+    {
+      "question": "你的抗压能力怎么样？",
+      "hint": "诚实评估，这决定了你能不能扛住高强度的组",
+      "options": [
+        { "label": "很强", "desc": "996 也扛得住，目标坚定", "value": "strong" },
+        { "label": "一般", "desc": "能接受正常强度，受不了过度压榨", "value": "normal" },
+        { "label": "较弱", "desc": "希望按时毕业，不想被 push", "value": "weak" }
+      ]
+    },
+    {
+      "question": "你需要导师的指导吗？",
+      "hint": "判断你依赖导师的程度",
+      "options": [
+        { "label": "需要", "desc": "希望导师能带着做科研", "value": "need" },
+        { "label": "不需要", "desc": "自己能搞定，只要不添乱", "value": "none" },
+        { "label": "无所谓", "desc": "有没有都行", "value": "whatever" }
+      ]
+    }
+  ],
+  "results": {
+    "mentor-academic": {
+      "emoji": "🔬",
+      "title": "学术型导师",
+      "desc": "每年发顶刊顶会，资源人脉广",
+      "reason": "你目标明确想读博、抗压能力强，学术型导师能给你发高质量论文的机会和学术人脉。但代价是 996 甚至 007。确认自己真的扛得住再选，否则研三会非常痛苦。",
+      "advice": "选之前先确认：课题组有没有往届读博的师兄姐？发论文的节奏和产出是否稳定？博士申请需要导师强力引荐，这是关键资源。"
+    },
+    "mentor-half": {
+      "emoji": "🌿",
+      "title": "半放养型导师",
+      "desc": "定期组会，但不过度压榨",
+      "reason": "你希望正常毕业，又不想完全没人管。半放养型导师定期开组会、不过度压榨，给你留出自己做事的空间，是折中的稳妥选择。",
+      "advice": "提前向师兄姐打听导师的实际风格——很多半放养导师也会画饼。研一先试探底线，发现不对劲及时调整策略。"
+    },
+    "mentor-hands-off": {
+      "emoji": "🕊️",
+      "title": "纯放养型导师",
+      "desc": "佛系不管，给你最大自由",
+      "reason": "对你来说，导师不管就是最好的管。纯放养型导师给你最大自由时间做自己的事：刷题、实习、备考，全看你自律。这是进厂/考公路线的最优选。",
+      "advice": "注意：放养意味着没有经费和指导，版面费可能自理（约 5000 元）。另外务必先满足学院的毕业要求，别真的玩到研三。"
+    },
+    "default": {
+      "emoji": "🤝",
+      "title": "半放养型导师",
+      "desc": "折中的稳妥选择",
+      "reason": "没有绝对完美的导师，排除掉口碑差的之后，剩下的看缘分。半放养型是大部分人的合理选择：有基本指导，也不过度压榨。",
+      "advice": "无论选谁，记得避雷三件套：学院官网看导师简历（项目频率、论文产出）、加新生群问师兄姐（聊后发个小红包）、观察师兄姐的精神状态——这是最直观的指标。"
+    }
+  },
+  "logic": "stage:$phd,aim:$strong/mentor-academic|stage:$phd,aim:$normal/mentor-half|stage:$phd,aim:$weak/mentor-half|stage:$industry/mentor-hands-off|stage:$civil/mentor-hands-off|stage:$undecided/mentor-hands-off|default:default"
+}

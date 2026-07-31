@@ -1,0 +1,107 @@
+{
+  "id": "graduate-path-planner",
+  "type": "graduate-path",
+  "title": "读研目标与三年规划",
+  "subtitle": "先定位目标，再看三年关键里程碑",
+  "emoji": "🎯",
+  "color": "#7c3aed",
+  "tags": ["研究生", "规划", "毕业目标"],
+  "description": "通过 2 个问题确定最适合你的毕业方向，再对照三年规划清单查漏补缺。",
+  "steps": [
+    {
+      "question": "毕业后家里能否帮你付房子首付 + 车 + 彩礼？",
+      "hint": "这是影响毕业目标选择的第一因素",
+      "options": [
+        { "label": "能", "desc": "经济压力不大，选择面更广", "value": "can" },
+        { "label": "不能", "desc": "需要尽快经济独立", "value": "cannot" }
+      ]
+    },
+    {
+      "question": "你的个人倾向是什么？",
+      "hint": "选最接近的",
+      "options": [
+        { "label": "求稳", "desc": "想进体制、工作轻松稳定", "value": "stable" },
+        { "label": "技术挣钱", "desc": "想过硬的技术能力、高收入", "value": "money" },
+        { "label": "学术深造", "desc": "想做科研、读博", "value": "academic" },
+        { "label": "没想好", "desc": "走一步看一步", "value": "unsure" }
+      ]
+    }
+  ],
+  "goals": {
+    "civil-servant": {
+      "emoji": "🎯",
+      "title": "推荐方向：考公考编",
+      "desc": "稳定路线，适合家境尚可或追求安稳的你",
+      "advice": "备考行测+申论，应届生身份是最大红利，错过不再有。准备考公 = 同时准备考编和国央企笔试，一鱼三吃。",
+      "color": "#059669"
+    },
+    "industry": {
+      "emoji": "💼",
+      "title": "推荐方向：进厂（企业就业）",
+      "desc": "技术路线，高收入但竞争激烈",
+      "advice": "实习经历比论文更重要。科研进度压缩到研二上完成，研二下全力实习。刷 LeetCode + 八股文 + 项目经验，三件套缺一不可。",
+      "color": "#2563eb"
+    },
+    "phd": {
+      "emoji": "🎓",
+      "title": "推荐方向：读博",
+      "desc": "学术路线，条件不错，值得冲刺",
+      "advice": "确认课题组有读博先例、你能扛住压力。发 SCI 二区以上论文，经营好导师关系——博士需要强力引荐。",
+      "color": "#7c3aed"
+    },
+    "phd-invest": {
+      "emoji": "⚠️",
+      "title": "慎重考虑：读博",
+      "desc": "经济压力较大，读博风险高",
+      "advice": "建议先工作 1-2 年缓解经济压力，再考虑在职/非全日制读博。如果执意读博，确保满足：课题组有先例、你能扛住、有高质量论文。",
+      "color": "#dc2626"
+    }
+  },
+  "checklist": {
+    "categories": [
+      {
+        "name": "研一 · 打基础期",
+        "items": [
+          { "text": "明确毕业目标", "goals": ["all"] },
+          { "text": "开始准备行测+申论", "goals": ["civil-servant"] },
+          { "text": "精读 3-5 篇目标领域综述", "goals": ["industry", "phd"] },
+          { "text": "找到基准模型并跑通", "goals": ["industry", "phd"] },
+          { "text": "参加学生组织/社团积累经历", "goals": ["civil-servant"] },
+          { "text": "刷 LeetCode 50 题以上", "goals": ["industry"] },
+          { "text": "经营好与导师的关系", "goals": ["phd"] }
+        ]
+      },
+      {
+        "name": "研二 · 核心产出期",
+        "items": [
+          { "text": "完成小论文并投稿", "goals": ["all"] },
+          { "text": "刷行测真题 + 申论练习", "goals": ["civil-servant"] },
+          { "text": "找暑期实习并完成", "goals": ["industry"] },
+          { "text": "缝模块 + 做实验", "goals": ["phd"] },
+          { "text": "精读 5-8 篇顶刊方法部分", "goals": ["phd"] },
+          { "text": "刷 LeetCode 200 题以上", "goals": ["industry"] },
+          { "text": "准备国考报名材料", "goals": ["civil-servant"] },
+          { "text": "准备一份完整简历", "goals": ["industry"] }
+        ]
+      },
+      {
+        "name": "研三 · 毕业冲刺期",
+        "items": [
+          { "text": "完成大论文", "goals": ["all"] },
+          { "text": "通过盲审 + 答辩", "goals": ["all"] },
+          { "text": "参加国考/省考", "goals": ["civil-servant"] },
+          { "text": "参加秋招/春招", "goals": ["industry"] },
+          { "text": "联系博导 + 准备申请材料", "goals": ["phd"] },
+          { "text": "准备政审材料", "goals": ["civil-servant"] },
+          { "text": "完成入职手续", "goals": ["industry"] }
+        ]
+      }
+    ],
+    "results": [
+      { "min": 0, "max": 3, "label": "🌱 刚起步", "desc": "还有很多准备工作要做", "suggestion": "先从明确目标开始，按清单逐项推进。" },
+      { "min": 4, "max": 7, "label": "📈 在路上了", "desc": "已有一定进展", "suggestion": "保持节奏，重点攻克关键事项。" },
+      { "min": 8, "max": 11, "label": "🎯 准备充分", "desc": "大部分事项已完成", "suggestion": "查漏补缺，注意时间节点。" },
+      { "min": 12, "max": 20, "label": "🏆 完全就绪", "desc": "你已做好充分准备", "suggestion": "正常发挥，目标可期！" }
+    ]
+  }
+}
