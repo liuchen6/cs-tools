@@ -116,23 +116,31 @@ function reset() {
   selected.value = null
 }
 
+const dimMap = {
+  stage: 0, goal: 0,
+  aim: 1, motive: 1,
+  pref: 2, ready: 2, style: 2,
+  res: 3,
+}
+
 const resultKey = computed(() => {
   const rules = props.config.logic.split('|')
   const p = picks.value
 
   for (const rule of rules) {
     const [conds, key] = rule.split('/')
+    if (conds === 'default') continue
     const parts = conds.split(',')
     let match = true
     for (const part of parts) {
-      const [dim, val] = part.replace('stage:', 's_').replace('aim:', 'a_').replace('pref:', 'p_')
-        .replace('motive:', 'm_').replace('ready:', 'r_').replace('goal:', 'g_')
-        .replace('style:', 'st_').replace('res:', 're_').replace(/^\$/, '').split(':')
-      const dimMap = { s: 0, a: 1, p: 2, m: 1, r: 2, g: 0, st: 1, re: 2 }
-      const idx = dimMap[dim.replace(/^[a-z]+_/, '').charAt(0)]
-      if (idx !== undefined && p[idx] !== val) { match = false; break }
+      const m = part.trim().match(/^([a-z_]+):\$([^,]*)$/)
+      if (!m) { match = false; break }
+      const val = m[2]
+      if (val === 'any') continue
+      const idx = dimMap[m[1]]
+      if (idx === undefined || p[idx] !== val) { match = false; break }
     }
-    if (match && key !== 'default') return key
+    if (match) return key
   }
   return 'default'
 })

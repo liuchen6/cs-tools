@@ -73,5 +73,5 @@
       "path": ["Go基础语法 + 并发编程", "Go Web开发（Gin框架）", "学习Docker + 微服务", "做一个分布式系统小项目"]
     }
   },
-  "logic": "stage:$early,aim:$ai/undecided,pref:$easy/python|stage:$early,aim:$web,pref:$job/java|stage:$early,aim:$web,pref:$easy/ts|stage:$early,aim:$system,pref:$deep/c|stage:$early,aim:$undecided,pref:$job/java|stage:$early,aim:$undecided,pref:$deep/c|stage:$late,aim:$web,pref:$job/java|stage:$late,aim:$web,pref:$easy/ts|stage:$late,aim:$ai,pref:$any/python|stage:$late,aim:$system,pref:$deep/c|stage:$late,aim:$system,pref:$job/go|stage:$late,aim:$undecided,pref:$deep/c|stage:$late,aim:$undecided,pref:$job/java|default:python"
+  "logic": "stage:$early,aim:$ai,pref:$any/python|stage:$early,aim:$web,pref:$job/java|stage:$early,aim:$web,pref:$easy/ts|stage:$early,aim:$system,pref:$deep/c|stage:$early,aim:$undecided,pref:$job/java|stage:$early,aim:$undecided,pref:$deep/c|stage:$late,aim:$web,pref:$job/java|stage:$late,aim:$web,pref:$easy/ts|stage:$late,aim:$ai,pref:$any/python|stage:$late,aim:$system,pref:$deep/c|stage:$late,aim:$system,pref:$job/go|stage:$late,aim:$undecided,pref:$deep/c|stage:$late,aim:$undecided,pref:$job/java|default:python"
 }

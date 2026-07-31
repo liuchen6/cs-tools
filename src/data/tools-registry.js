@@ -36,15 +36,6 @@ export const tools = [
     data: () => import('./study-or-work.json'),
   },
   {
-    path: '/mentor-preference',
-    icon: '🧑‍🏫',
-    title: '选导师偏好卡',
-    description: '4 个维度选出你最在意的导师特质，生成你的导师偏好画像。',
-    color: '#2563eb',
-    tags: ['读研', '选导师'],
-    data: () => import('./mentor-preference.json'),
-  },
-  {
     path: '/exam-408-checklist',
     icon: '📚',
     title: '408 考点清单',
