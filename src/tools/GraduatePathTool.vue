@@ -56,14 +56,14 @@
         <h2 class="text-2xl font-bold text-gray-900">{{ goal.title }}</h2>
         <p class="mt-2 text-gray-500">{{ goal.desc }}</p>
         <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-brand-50 to-blue-50 text-left">
-          <p class="text-sm text-gray-700 leading-relaxed">{{ goal.advice }}</p>
+          <p class="text-sm text-gray-700 leading-relaxed">{{ goalAdvice }}</p>
         </div>
       </div>
 
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-semibold text-gray-800 flex items-center gap-2">
           <span class="w-1.5 h-5 rounded-full inline-block" :style="{ background: goal.color }" />
-          三年规划清单
+          {{ config.checklistTitle || '三年规划清单' }}
           <span class="text-xs text-gray-400 font-normal">({{ goalLabel }}专属)</span>
         </h3>
         <div class="text-sm text-gray-500">{{ totalChecked }}/{{ totalItems }}</div>
@@ -159,6 +159,20 @@ function prev() {
 }
 
 function computeGoal() {
+  const map = props.config.goalMap
+  if (map) {
+    for (const rule of map) {
+      if (rule.default) return rule.goal
+      const match = rule.match || {}
+      let ok = true
+      for (const [key, val] of Object.entries(match)) {
+        const idx = parseInt(key.replace(/^p/, ''))
+        if (val !== 'any' && picks.value[idx] !== val) { ok = false; break }
+      }
+      if (ok) return rule.goal
+    }
+    return 'default'
+  }
   const [fin, tend] = picks.value
   if (fin === 'can') {
     if (tend === 'stable') return 'civil-servant'
@@ -177,7 +191,18 @@ const goal = computed(() => props.config.goals[goalKey.value])
 
 const goalLabel = computed(() => {
   const labels = { 'civil-servant': '考公考编', industry: '进厂', phd: '读博', 'phd-invest': '读博' }
-  return labels[goalKey.value]
+  return labels[goalKey.value] || goal.value?.title || ''
+})
+
+const gradeValue = computed(() => picks.value.length > 1 ? picks.value[picks.value.length - 1] : null)
+
+const goalAdvice = computed(() => {
+  const g = goal.value
+  if (!g) return ''
+  if (g.adviceByGrade && gradeValue.value && g.adviceByGrade[gradeValue.value]) {
+    return g.adviceByGrade[gradeValue.value]
+  }
+  return g.advice || ''
 })
 
 const goalChecklist = computed(() => {
@@ -217,8 +242,10 @@ function checkedCountInCat(ci) {
 
 const result = computed(() => {
   const n = totalChecked.value
-  const r = props.config.checklist.results.find(r => n >= r.min && n <= r.max) || props.config.checklist.results[0]
-  return r
+  const pct = progress.value
+  const rs = props.config.checklist.results
+  let r = rs.find(r => (r.minPct !== undefined) ? (pct >= r.minPct && pct <= r.maxPct) : (n >= r.min && n <= r.max))
+  return r || rs[0]
 })
 
 function resetAll() {

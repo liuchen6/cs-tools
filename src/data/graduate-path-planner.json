@@ -98,10 +98,10 @@
       }
     ],
     "results": [
-      { "min": 0, "max": 3, "label": "🌱 刚起步", "desc": "还有很多准备工作要做", "suggestion": "先从明确目标开始，按清单逐项推进。" },
-      { "min": 4, "max": 7, "label": "📈 在路上了", "desc": "已有一定进展", "suggestion": "保持节奏，重点攻克关键事项。" },
-      { "min": 8, "max": 11, "label": "🎯 准备充分", "desc": "大部分事项已完成", "suggestion": "查漏补缺，注意时间节点。" },
-      { "min": 12, "max": 20, "label": "🏆 完全就绪", "desc": "你已做好充分准备", "suggestion": "正常发挥，目标可期！" }
+      { "minPct": 0, "maxPct": 24, "label": "🌱 刚起步", "desc": "还有很多准备工作要做", "suggestion": "先从明确目标开始，按清单逐项推进。" },
+      { "minPct": 25, "maxPct": 49, "label": "📈 在路上了", "desc": "已有一定进展", "suggestion": "保持节奏，重点攻克关键事项。" },
+      { "minPct": 50, "maxPct": 74, "label": "🎯 准备充分", "desc": "大部分事项已完成", "suggestion": "查漏补缺，注意时间节点。" },
+      { "minPct": 75, "maxPct": 100, "label": "🏆 完全就绪", "desc": "你已做好充分准备", "suggestion": "正常发挥，目标可期！" }
     ]
   }
 }
