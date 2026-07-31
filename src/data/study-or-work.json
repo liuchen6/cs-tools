@@ -2,11 +2,12 @@
   "id": "study-or-work",
   "type": "decision-flow",
   "title": "考研还是工作",
-  "subtitle": "3步理清你的倾向，不是替你决定，是帮你看清自己",
+  "subtitle": "3 步理清你的倾向，不是替你决定，是帮你看清自己",
   "emoji": "⚖️",
   "color": "#059669",
   "tags": ["大三", "大四", "选择困难"],
-  "description": "考研考公还是直接工作？没有标准答案。3个问题帮你理清自己当前的倾向。",
+  "description": "考研考公还是直接工作？没有标准答案。3 个问题帮你理清自己当前的倾向。",
+  "related": ["/exam-408-checklist", "/resume-checklist", "/university-plan"],
   "steps": [
     {
       "question": "你现在是什么阶段？",
@@ -21,7 +22,7 @@
       "hint": "诚实地选最贴近你内心的那个",
       "options": [
         { "label": "我需要研究生学历", "desc": "目标岗位/行业有学历门槛", "value": "need" },
-        { "label": "我还没准备好工作", "desc": "想再缓冲2-3年", "value": "scared" },
+        { "label": "我还没准备好工作", "desc": "想再缓冲 2-3 年", "value": "scared" },
         { "label": "我就是想深造", "desc": "对学术/研究方向有热情", "value": "passion" },
         { "label": "我其实不想考研", "desc": "但周围人都在考，压力大", "value": "peer" }
       ]
@@ -30,7 +31,7 @@
       "question": "你对就业的准备度如何？",
       "hint": "客观评估自己当前的状态",
       "options": [
-        { "label": "已经有offer或实习经历", "desc": "技术面/项目经验都比较扎实", "value": "ready" },
+        { "label": "已经有 offer 或实习经历", "desc": "技术面/项目经验都比较扎实", "value": "ready" },
         { "label": "有基础但还没开始找", "desc": "刷了一些题，有项目但不多", "value": "half" },
         { "label": "几乎没准备", "desc": "简历空白、没刷题、没项目", "value": "none" }
       ]
@@ -41,30 +42,46 @@
       "emoji": "📚",
       "title": "你更适合考研",
       "desc": "从你的回答来看，考研是更匹配你现状的选择。",
-      "reason": "如果你的目标岗位有硬学历门槛，或者你确实有深造的热情——考研是值得投入的。关键是别盲目跟风，想清楚再上路。",
-      "advice": "确认目标院校和专业，制定复习时间线。408备考建议留出至少6个月。"
+      "reason": "目标岗位有硬学历门槛、或你确实有深造的热情——考研是值得投入的。关键是别盲目跟风，想清楚再上路。",
+      "advice": "确认目标院校和专业，制定复习时间线。408 备考建议留出至少 6 个月。",
+      "adviceByStage": {
+        "junior": "3-4 月定下目标院校和专业，408 备考建议留出至少 6 个月，最晚大三下开始系统复习。",
+        "senior": "今年 10 月报名、12 月初试，时间很紧——立刻拿真题自测定位，差距过大就准备二战计划，同时投春招保底，别把应届生身份浪费掉。"
+      }
     },
     "go-work": {
       "emoji": "💼",
       "title": "你更适合直接工作",
       "desc": "准备充分就不要被考研焦虑绑架了——工作经验同样是竞争力。",
-      "reason": "如果你已经有不错的准备度，两年的工作经验vs两年读研，前者的职业回报不一定差。技术岗尤其看重实际产出。",
-      "advice": "集中精力刷题+优化简历+找内推，大三暑假是投实习的黄金窗口。"
+      "reason": "你已经有不错的准备度，两年的工作经验 vs 两年读研，前者的职业回报不一定差。技术岗尤其看重实际产出。",
+      "advice": "集中精力刷题+优化简历+找内推，大三暑假是投实习的黄金窗口。",
+      "adviceByStage": {
+        "junior": "最晚大三下 2-4 月投暑期实习（大厂实习转正率高），同步刷题、优化简历、找内推。",
+        "senior": "9-11 月秋招正式批是主场，投递时突出项目与实习产出；3-5 月春招补录是最后窗口。"
+      }
     },
     "think-first": {
       "emoji": "🤔",
       "title": "先想清楚，别被焦虑推着走",
       "desc": "你现在最需要的不是决定，而是先搞清楚自己到底在逃避什么、想要什么。",
-      "reason": "考研不是避风港——如果只是为了逃避就业压力，读完研依然要面对。建议先做一件事：暑假去找一份实习，体验一下真实的工作状态。",
-      "advice": "实习几个月会让你更清楚自己想要什么。不管最后考研还是工作，有实习经历都不亏。"
+      "reason": "考研不是避风港——如果只是为了逃避就业压力，读完研依然要面对。建议先做一件事：找一份实习，体验一下真实的工作状态。",
+      "advice": "实习几个月会让你更清楚自己想要什么。不管最后考研还是工作，有实习经历都不亏。",
+      "adviceByStage": {
+        "junior": "这学期内投 3-5 个暑期实习，用真实工作状态校准方向；不管最后考研还是工作，有实习经历都不亏。",
+        "senior": "尽快投一份实习或做几次行业访谈，用一手信息校准方向；同时保持 GPA 和秋招准备不归零。"
+      }
     },
     "work-first-then-study": {
       "emoji": "🔄",
       "title": "建议先工作，再考虑读研",
       "desc": "你需要更多的一手经验来做判断，而不是在想象中做选择。",
-      "reason": "对行业了解不够的情况下做决策，容易选错。建议先工作1-2年，有实践经验后读一个非全日制硕士或在职硕士，性价比更高。",
-      "advice": "工作后你会更清楚自己缺什么、需要补什么，那时的读研目标会更明确。"
+      "reason": "对行业了解不够的情况下做决策，容易选错。建议先工作 1-2 年，有实践经验后再评估读研的投入产出。",
+      "advice": "工作后你会更清楚自己缺什么、需要补什么，那时的读研目标会更明确。",
+      "adviceByStage": {
+        "junior": "第一步：本学期内完成简历初稿，投 3-5 个暑期实习，拿到真实反馈后再做决定。",
+        "senior": "第一步：完成简历并投秋招/社招，工作 1-2 年后再评估在职硕士或非全硕士的投入产出。"
+      }
     }
   },
-  "logic": "stage:$senior,motive:$passion/go-study|stage:$senior,motive:$need,ready:$half/go-study|stage:$senior,motive:$scared/work-first-then-study|stage:$senior,motive:$peer,ready:$any/work-first-then-study|stage:$junior,motive:$passion/go-study|stage:$junior,motive:$need,ready:$none/go-study|stage:$junior,motive:$scared,ready:$none/work-first-then-study|stage:$junior,motive:$peer/work-first-then-study|stage:$any,motive:$any,ready:$ready/go-work|stage:$any,motive:$scared,ready:$half/think-first|stage:$any,motive:$peer,ready:$half/think-first|default:think-first"
+  "logic": "stage:$any,motive:$passion/go-study|stage:$any,motive:$need/go-study|stage:$any,motive:$scared,ready:$ready/go-work|stage:$any,motive:$scared,ready:$half/think-first|stage:$any,motive:$scared,ready:$none/work-first-then-study|stage:$any,motive:$peer,ready:$ready/go-work|stage:$any,motive:$peer,ready:$half/think-first|stage:$any,motive:$peer,ready:$none/work-first-then-study|default:think-first"
 }

@@ -54,7 +54,7 @@ const downloadImage = async () => {
     scale: 2,
   })
   const link = document.createElement('a')
-  link.download = 'cs-breakout-result.png'
+  link.download = props.result.filename || 'cs-breakout-result.png'
   link.href = canvas.toDataURL()
   link.click()
 }

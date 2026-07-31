@@ -114,12 +114,31 @@
           <button @click="shareResult" class="btn-primary text-sm">分享结果</button>
         </div>
       </div>
+
+      <div v-if="relatedTools.length" class="mt-6">
+        <p class="text-xs font-medium text-gray-400 mb-3">相关工具推荐</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <RouterLink
+            v-for="t in relatedTools"
+            :key="t.path"
+            :to="t.path"
+            class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-colors text-left"
+          >
+            <span class="text-2xl">{{ t.icon }}</span>
+            <span>
+              <span class="block text-sm font-medium text-gray-800">{{ t.title }}</span>
+              <span class="block text-xs text-gray-400 line-clamp-2">{{ t.description }}</span>
+            </span>
+          </RouterLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, inject } from 'vue'
+import { tools } from '../data/tools-registry.js'
 
 const props = defineProps({ config: Object })
 const openShare = inject('openShare')
@@ -205,9 +224,18 @@ const goalAdvice = computed(() => {
   return g.advice || ''
 })
 
+const relatedTools = computed(() => {
+  const rel = props.config.related || []
+  return rel.map(p => tools.find(t => t.path === p)).filter(Boolean)
+})
+
 const goalChecklist = computed(() => {
   const gk = goalKey.value
-  return props.config.checklist.categories.map(cat => ({
+  const gv = gradeValue.value
+  const cats = gv
+    ? props.config.checklist.categories.filter(c => !c.grades || c.grades.includes(gv))
+    : props.config.checklist.categories
+  return cats.map(cat => ({
     name: cat.name,
     items: cat.items.filter(item => item.goals.includes('all') || item.goals.includes(gk))
   }))
@@ -265,8 +293,9 @@ function shareResult() {
   ).join('')
   openShare({
     emoji: g.emoji,
-    title: `${g.title} · ${progress.value}%`,
+    title: `${result.value.label} · ${progress.value}%`,
     subtitle: `${props.config.title}`,
+    filename: `cs-breakout-${props.config.id}.png`,
     detailHTML: `
       <div style="text-align:center;margin-bottom:8px;font-size:13px;color:rgba(255,255,255,0.5)">${g.desc}</div>
       <div style="text-align:center;margin-bottom:12px;">
@@ -277,6 +306,7 @@ function shareResult() {
       <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.08);border-radius:8px;font-size:13px;text-align:center;">
         ${r.suggestion}
       </div>
+      <div style="margin-top:10px;font-size:12px;color:rgba(255,255,255,0.5);text-align:left;">${g.advice || ''}</div>
     `,
   })
 }

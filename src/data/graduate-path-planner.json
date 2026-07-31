@@ -7,10 +7,11 @@
   "color": "#7c3aed",
   "tags": ["研究生", "规划", "毕业目标"],
   "description": "通过 2 个问题确定最适合你的毕业方向，再对照三年规划清单查漏补缺。",
+  "related": ["/mentor-type", "/resume-checklist"],
   "steps": [
     {
-      "question": "毕业后家里能否帮你付房子首付 + 车 + 彩礼？",
-      "hint": "这是影响毕业目标选择的第一因素",
+      "question": "毕业后家里能否帮你解决房子首付等大额支出？",
+      "hint": "影响读博等高投入路线的选择",
       "options": [
         { "label": "能", "desc": "经济压力不大，选择面更广", "value": "can" },
         { "label": "不能", "desc": "需要尽快经济独立", "value": "cannot" }
@@ -27,12 +28,20 @@
       ]
     }
   ],
+  "goalMap": [
+    { "match": { "p0": "can", "p1": "academic" }, "goal": "phd" },
+    { "match": { "p0": "cannot", "p1": "academic" }, "goal": "phd-invest" },
+    { "match": { "p1": "stable" }, "goal": "civil-servant" },
+    { "match": { "p1": "money" }, "goal": "industry" },
+    { "match": { "p1": "unsure" }, "goal": "civil-servant" },
+    { "default": "civil-servant" }
+  ],
   "goals": {
     "civil-servant": {
       "emoji": "🎯",
       "title": "推荐方向：考公考编",
-      "desc": "稳定路线，适合家境尚可或追求安稳的你",
-      "advice": "备考行测+申论，应届生身份是最大红利，错过不再有。准备考公 = 同时准备考编和国央企笔试，一鱼三吃。",
+      "desc": "稳定路线，追求安稳与确定性",
+      "advice": "备考行测+申论，应届生身份是最大红利，错过不再有。准备考公 = 同时准备考编和国央企笔试，一鱼三吃。研究生考公还有选调生通道，定向选调竞争远小于国考。",
       "color": "#059669"
     },
     "industry": {
@@ -46,7 +55,7 @@
       "emoji": "🎓",
       "title": "推荐方向：读博",
       "desc": "学术路线，条件不错，值得冲刺",
-      "advice": "确认课题组有读博先例、你能扛住压力。发 SCI 二区以上论文，经营好导师关系——博士需要强力引荐。",
+      "advice": "确认课题组有读博先例、你能扛住压力。发 SCI 二区以上论文，经营好导师关系——博士需要强力引荐。申请考核制下，提前联系目标博导比成绩更重要。",
       "color": "#7c3aed"
     },
     "phd-invest": {
@@ -64,24 +73,27 @@
         "items": [
           { "text": "明确毕业目标", "goals": ["all"] },
           { "text": "开始准备行测+申论", "goals": ["civil-servant"] },
+          { "text": "争取入党或担任研究生干部（选调生硬门槛）", "goals": ["civil-servant"] },
           { "text": "精读 3-5 篇目标领域综述", "goals": ["industry", "phd"] },
           { "text": "找到基准模型并跑通", "goals": ["industry", "phd"] },
-          { "text": "参加学生组织/社团积累经历", "goals": ["civil-servant"] },
+          { "text": "确定研究方向并完成开题（多数学校研一下~研二上）", "goals": ["industry", "phd"] },
           { "text": "刷 LeetCode 50 题以上", "goals": ["industry"] },
-          { "text": "经营好与导师的关系", "goals": ["phd"] }
+          { "text": "经营好与导师的关系", "goals": ["phd", "phd-invest"] }
         ]
       },
       {
         "name": "研二 · 核心产出期",
         "items": [
           { "text": "完成小论文并投稿", "goals": ["all"] },
+          { "text": "通过中期考核", "goals": ["all"] },
           { "text": "刷行测真题 + 申论练习", "goals": ["civil-servant"] },
-          { "text": "找暑期实习并完成", "goals": ["industry"] },
-          { "text": "缝模块 + 做实验", "goals": ["phd"] },
-          { "text": "精读 5-8 篇顶刊方法部分", "goals": ["phd"] },
+          { "text": "了解目标岗位报考条件（选调/应届岗位）", "goals": ["civil-servant"] },
+          { "text": "2-4 月投暑期实习申请并完成实习（大厂转正率高）", "goals": ["industry"] },
+          { "text": "缝模块 + 做实验", "goals": ["phd", "phd-invest"] },
+          { "text": "精读 5-8 篇顶刊方法部分", "goals": ["phd", "phd-invest"] },
           { "text": "刷 LeetCode 200 题以上", "goals": ["industry"] },
-          { "text": "准备国考报名材料", "goals": ["civil-servant"] },
-          { "text": "准备一份完整简历", "goals": ["industry"] }
+          { "text": "准备一份完整简历", "goals": ["industry"] },
+          { "text": "联系目标博导，确认读博意向", "goals": ["phd", "phd-invest"] }
         ]
       },
       {
@@ -89,10 +101,10 @@
         "items": [
           { "text": "完成大论文", "goals": ["all"] },
           { "text": "通过盲审 + 答辩", "goals": ["all"] },
-          { "text": "参加国考/省考", "goals": ["civil-servant"] },
+          { "text": "国考报名（10 月）+ 笔试（12 月）+ 面试（次年 2-3 月）", "goals": ["civil-servant"] },
+          { "text": "省考（3-4 月）/ 政审与体检", "goals": ["civil-servant"] },
           { "text": "参加秋招/春招", "goals": ["industry"] },
-          { "text": "联系博导 + 准备申请材料", "goals": ["phd"] },
-          { "text": "准备政审材料", "goals": ["civil-servant"] },
+          { "text": "申请考核制博士报名（11-12 月）+ 复试（3-4 月）", "goals": ["phd", "phd-invest"] },
           { "text": "完成入职手续", "goals": ["industry"] }
         ]
       }

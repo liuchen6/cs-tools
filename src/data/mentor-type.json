@@ -7,6 +7,7 @@
   "color": "#2563eb",
   "tags": ["读研", "选导师"],
   "description": "不是找最好的导师，而是排除最烂的。从读研目标、抗压能力、指导风格、资源偏好四个维度匹配适合你的导师类型，附避雷操作指南。",
+  "related": ["/graduate-path-planner"],
   "steps": [
     {
       "question": "你读研的终极目标是什么？",
@@ -58,7 +59,7 @@
       "emoji": "🌿",
       "title": "半放养型导师",
       "desc": "定期组会，不过度压榨，折中稳妥",
-      "reason": "你希望正常毕业，又不想完全没人管。半放养型导师定期开组会、不过度压榨，给你留出自己做事的空间，是折中的稳妥选择。提前向师兄姐打听导师的实际风格——很多半放养导师也会画饼。研一先试探底线，发现不对劲及时调整策略。"
+      "reason": "半放养型导师定期开组会、不过度压榨，给你留出自己做事的空间，是折中的稳妥选择。提前向师兄姐打听导师的实际风格——很多半放养导师也会画饼。研一先试探底线，发现不对劲及时调整策略。"
     },
     "mentor-hands-off": {
       "emoji": "🕊️",
@@ -78,6 +79,12 @@
       "desc": "导师有行业关系，能推荐实习和工作",
       "reason": "你在意导师能不能帮你打开行业圈子，内推资源在求职时是硬通货。问在读学生：导师会推荐实习吗？有没有校友内推资源？注意：大牛导师不一定有空带你，资源型导师往往学生多、指导少，平衡一下预期。"
     },
+    "mentor-paper": {
+      "emoji": "📄",
+      "title": "学术产出型导师",
+      "desc": "论文导向，带着你发文章，给简历和履历加分",
+      "reason": "你想靠论文产出提升竞争力——算法岗求职、人才引进、后续读博都用得上。这类导师能给你发表机会和学术训练。注意平衡：确认论文方向能落地应用、师兄姐的发表周期和署名规则，别选那种「你只能做这个方向」的。"
+    },
     "default": {
       "emoji": "📋",
       "title": "平衡型选手",
@@ -85,5 +92,5 @@
       "reason": "选导师没有绝对完美，排除口碑差的之后看缘分。半放养型是大部分人的合理选择：有基本指导，也不过度压榨。建议列 3-5 个候选导师逐个验证：学院官网看导师简历（项目频率、论文产出）、加新生群问师兄姐（聊后发个小红包）、观察师兄姐的精神状态——这是最直观的指标。毕业年限、发论文机会、是否好沟通、有没有不合理的杂活，这四问问完再定。"
     }
   },
-  "logic": "stage:$phd,aim:$strong/mentor-academic|stage:$phd,aim:$normal/mentor-half|stage:$phd,aim:$weak/mentor-half|stage:$industry,style:$free/mentor-hands-off|stage:$civil,style:$free/mentor-hands-off|stage:$industry,res:$network/mentor-network|stage:$industry,res:$project/mentor-project|stage:$industry/mentor-half|stage:$civil/mentor-half|default:default"
+  "logic": "stage:$phd,aim:$strong/mentor-academic|stage:$phd,aim:$normal/mentor-half|stage:$phd,aim:$weak/mentor-half|stage:$industry,style:$free/mentor-hands-off|stage:$civil,style:$free/mentor-hands-off|stage:$industry,res:$network/mentor-network|stage:$industry,res:$project/mentor-project|stage:$industry,res:$paper/mentor-paper|stage:$civil,res:$paper/mentor-paper|stage:$industry/mentor-half|stage:$civil/mentor-half|default:default"
 }

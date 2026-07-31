@@ -52,12 +52,30 @@
         <button @click="share" class="btn-primary text-sm">分享进度</button>
         <button @click="reset" class="btn-secondary text-sm">重新勾选</button>
       </div>
+      <div v-if="relatedTools.length" class="mt-8 pt-6 border-t border-gray-100">
+        <p class="text-xs font-medium text-gray-400 mb-3">相关工具推荐</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <RouterLink
+            v-for="t in relatedTools"
+            :key="t.path"
+            :to="t.path"
+            class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-colors text-left"
+          >
+            <span class="text-2xl">{{ t.icon }}</span>
+            <span>
+              <span class="block text-sm font-medium text-gray-800">{{ t.title }}</span>
+              <span class="block text-xs text-gray-400 line-clamp-2">{{ t.description }}</span>
+            </span>
+          </RouterLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, inject } from 'vue'
+import { tools } from '../data/tools-registry.js'
 
 const props = defineProps({ config: Object })
 const openShare = inject('openShare')
@@ -90,9 +108,26 @@ const progress = computed(() => {
 })
 
 const result = computed(() => {
+  const pct = progress.value
   const n = totalChecked.value
-  const r = props.config.results.find(r => n >= r.min && n <= r.max) || props.config.results[0]
-  return r
+  const rs = props.config.results
+  let r = rs.find(r => (r.minPct !== undefined) ? (pct >= r.minPct && pct <= r.maxPct) : (n >= r.min && n <= r.max))
+  return r || rs[0]
+})
+
+const relatedTools = computed(() => {
+  const rel = props.config.related || []
+  return rel.map(p => tools.find(t => t.path === p)).filter(Boolean)
+})
+
+const topMissing = computed(() => {
+  const miss = []
+  props.config.categories.forEach((cat, ci) => {
+    cat.items.forEach((item, ii) => {
+      if (!checked.value[`${ci}-${ii}`]) miss.push(item)
+    })
+  })
+  return miss.slice(0, 3)
 })
 
 function reset() {
@@ -103,16 +138,21 @@ function share() {
   const catBreakdown = props.config.categories.map(c =>
     `<tr><td style="padding:4px 8px;color:rgba(255,255,255,0.6)">${c.name}</td><td style="padding:4px 8px;text-align:right;font-weight:600">${checkedCount(c.items)}/${c.items.length}</td></tr>`
   ).join('')
+  const missHTML = topMissing.value.length
+    ? `<div style="margin-top:10px;font-size:13px;text-align:left;">最该补：${topMissing.value.map(m => `<span style="display:inline-block;margin:2px;padding:2px 8px;background:rgba(255,255,255,0.1);border-radius:99px;">${m}</span>`).join('')}</div>`
+    : ''
   openShare({
     emoji: props.config.emoji,
     title: `${result.value.label} · ${progress.value}%`,
     subtitle: `${config.title}`,
+    filename: `cs-breakout-${props.config.id}.png`,
     detailHTML: `
       <div style="text-align:center;margin-bottom:12px;">
         <div style="font-size:36px;font-weight:700;">${totalChecked.value}/${totalItems.value}</div>
         <div style="font-size:13px;color:rgba(255,255,255,0.5);">完成项目</div>
       </div>
       <table style="width:100%;font-size:13px;border-collapse:collapse;">${catBreakdown}</table>
+      ${missHTML}
       <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.08);border-radius:8px;font-size:13px;text-align:center;">
         ${result.value.suggestion}
       </div>

@@ -54,7 +54,8 @@
         <h2 class="text-2xl font-bold text-gray-900">{{ result.title }}</h2>
         <p class="mt-2 text-gray-500">{{ result.desc }}</p>
         <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-brand-50 to-blue-50 text-left">
-          <p class="text-sm text-gray-700 leading-relaxed">{{ result.reason || result.advice }}</p>
+          <p class="text-sm text-gray-700 leading-relaxed">{{ result.reason }}</p>
+          <p v-if="resultAdvice" class="mt-2 text-sm font-medium text-brand-600">→ {{ resultAdvice }}</p>
         </div>
         <div v-if="result.path" class="mt-4 p-4 rounded-xl bg-gray-50 text-left">
           <h3 class="font-semibold text-gray-800 text-sm mb-2">推荐学习路径</h3>
@@ -69,6 +70,23 @@
           <button @click="reset" class="btn-secondary text-sm">重新测试</button>
           <button @click="shareResult" class="btn-primary text-sm">分享结果</button>
         </div>
+        <div v-if="relatedTools.length" class="mt-8 pt-6 border-t border-gray-100">
+          <p class="text-xs font-medium text-gray-400 mb-3">相关工具推荐</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <RouterLink
+              v-for="t in relatedTools"
+              :key="t.path"
+              :to="t.path"
+              class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-colors text-left"
+            >
+              <span class="text-2xl">{{ t.icon }}</span>
+              <span>
+                <span class="block text-sm font-medium text-gray-800">{{ t.title }}</span>
+                <span class="block text-xs text-gray-400 line-clamp-2">{{ t.description }}</span>
+              </span>
+            </RouterLink>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -76,6 +94,7 @@
 
 <script setup>
 import { ref, computed, inject } from 'vue'
+import { tools } from '../data/tools-registry.js'
 
 const props = defineProps({ config: Object })
 const openShare = inject('openShare')
@@ -150,18 +169,40 @@ const result = computed(() => {
   return props.config.results[key] || props.config.results.default
 })
 
+const relatedTools = computed(() => {
+  const rel = props.config.related || []
+  return rel.map(p => tools.find(t => t.path === p)).filter(Boolean)
+})
+
+const resultAdvice = computed(() => {
+  const r = result.value
+  if (!r) return ''
+  const stage = picks.value[0]
+  if (r.adviceByStage && stage && r.adviceByStage[stage]) return r.adviceByStage[stage]
+  return r.advice || ''
+})
+
 function shareResult() {
   const r = result.value
+  const pathHTML = r.path
+    ? `<div style="margin-top:10px;font-size:13px;text-align:left;color:rgba(255,255,255,0.8);">学习路径：${r.path.slice(0, 3).map((p, i) => `<div style="margin-top:4px;">${i + 1}. ${p}</div>`).join('')}</div>`
+    : ''
+  const adviceHTML = resultAdvice.value
+    ? `<div style="margin-top:10px;padding:8px;background:rgba(255,255,255,0.08);border-radius:8px;font-size:13px;">${resultAdvice.value}</div>`
+    : ''
   openShare({
     emoji: r.emoji,
     title: r.title,
     subtitle: props.config.title,
+    filename: `cs-breakout-${props.config.id}.png`,
     detailHTML: `
       <div style="font-size:14px;line-height:1.7;text-align:center;">
         <p style="margin-bottom:8px;">${r.desc}</p>
         <div style="padding:10px;background:rgba(255,255,255,0.08);border-radius:8px;font-size:13px;text-align:left;">
-          ${(r.reason || r.advice || '')}
+          ${r.reason || ''}
         </div>
+        ${adviceHTML}
+        ${pathHTML}
       </div>
     `,
   })

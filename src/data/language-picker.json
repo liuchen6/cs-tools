@@ -7,10 +7,11 @@
   "color": "#7c3aed",
   "tags": ["新手必看", "入门选择"],
   "description": "还在纠结学 C、Python 还是 Java？回答 3 个问题，找到最适合你现阶段的语言。",
+  "related": ["/freshman-checklist", "/university-plan"],
   "steps": [
     {
       "question": "你现在的阶段是？",
-      "hint": "不同阶段适合不同的入门路径",
+      "hint": "不同阶段适合不同的入门路径；如果学校有必修语言，先跟上学校节奏，把本测试当补充参考",
       "options": [
         { "label": "大一/大二", "desc": "刚接触编程不久", "value": "early" },
         { "label": "大三以上或有基础", "desc": "有一定编程基础，想深入一个方向", "value": "late" }
@@ -41,37 +42,37 @@
       "emoji": "🐍",
       "title": "推荐你从 Python 开始",
       "desc": "语法简洁、上手快、AI和数据科学领域覆盖广，新手友好度最高。",
-      "reason": "Python的语法接近自然语言，学习曲线平滑，适合作为第一门语言快速建立编程感觉。同时它在AI时代的需求持续增长，学了肯定不会错。",
+      "reason": "Python 的语法接近自然语言，学习曲线平滑，适合作为第一门语言快速建立编程感觉。同时它在 AI 时代的需求持续增长，学了肯定不会错。",
       "path": ["学习基础语法（变量、条件、循环、函数）", "用Python写数据结构与算法", "选择一个方向深入（Web/AI/自动化）", "做1-2个完整项目串联所学"]
     },
     "java": {
       "emoji": "☕",
       "title": "推荐你从 Java 开始",
       "desc": "工程化思维+大厂首选，就业面最广的工业级语言。",
-      "reason": "Java岗位多、薪资稳、大厂后端主力语言。严格的类型系统和面向对象设计能帮你建立良好的编程习惯。虽然入门比Python慢一点，但长期回报高。",
+      "reason": "Java 岗位多、薪资稳、大厂后端主力语言。严格的类型系统和面向对象设计能帮你建立良好的编程习惯。虽然入门比 Python 慢一点，但长期回报高。",
       "path": ["Java基础语法 + 面向对象思想", "集合框架 + 异常处理 + I/O", "MySQL + JDBC 基础", "Spring Boot 框架入门 + 一个 Web 项目"]
     },
     "c": {
       "emoji": "⚙️",
       "title": "推荐你从 C 语言开始",
       "desc": "理解计算机本质的最佳起点，学懂C再学其他语言事半功倍。",
-      "reason": "C语言直接操作内存，让你深入理解计算机底层原理。学完C再学其他语言你会发现很多概念都相通。适合想做系统开发、嵌入式、高性能计算的同学。",
-      "path": ["C语言基础语法 + 指针 + 内存管理", "用C实现基础数据结构（链表、树）", "了解计算机系统基础（推荐CS:APP）", "做一个小型系统项目（简易Shell/文件系统）"]
+      "reason": "C 语言直接操作内存，让你深入理解计算机底层原理。学懂 C 再学其他语言你会发现很多概念都相通。适合想做系统开发、嵌入式、高性能计算的同学。",
+      "path": ["C 语言基础语法 + 指针 + 内存管理", "用 C 实现基础数据结构（链表、树）", "了解计算机系统基础（推荐 CS:APP）", "做一个小型系统项目（简易 Shell/文件系统）"]
     },
     "ts": {
       "emoji": "🦕",
-      "title": "推荐你从 TypeScript / JavaScript 开始",
-      "desc": "Web开发之王，全栈工程师的第一选择。",
-      "reason": "对Web开发感兴趣，从JS/TS入手最直接。前端反馈极强——写几行代码立即可见。加上Node.js后，一门语言写前后端，学习效率高。",
+      "title": "推荐你从 JavaScript / TypeScript 开始",
+      "desc": "Web 开发之王，全栈工程师的第一选择。",
+      "reason": "从 JS 入手最直接，TypeScript 作为它的超集，熟练 JS 后一周即可上手。对 Web 开发感兴趣的话这是最快的路径——前端反馈极强，写几行代码立即可见。加上 Node.js 后，一门语言写前后端，学习效率高。",
       "path": ["JavaScript 基础语法 + DOM 操作", "TypeScript 基础", "选择一个前端框架（React/Vue）深入学习", "Node.js 入门 + 一个全栈项目"]
     },
     "go": {
       "emoji": "🐹",
       "title": "推荐你学习 Go",
-      "desc": "云原生时代的明星语言，适合作为第二语言深入学习。",
-      "reason": "Go由Google开发，语法简洁、并发支持强，在云原生和微服务领域已是主流。Docker、K8s等核心基础设施都用Go写的。建议已有基础后学习。",
-      "path": ["Go基础语法 + 并发编程", "Go Web开发（Gin框架）", "学习Docker + 微服务", "做一个分布式系统小项目"]
+      "desc": "云原生时代的明星语言，适合已有基础后学习。",
+      "reason": "Go 由 Google 开发，语法简洁、并发支持强，在云原生和微服务领域已是主流，Docker、K8s 等核心基础设施都用 Go 写的。建议有一定基础后再学，作为第二语言性价比很高。",
+      "path": ["Go 基础语法 + 并发编程", "Go Web 开发（Gin 框架）", "学习 Docker + 微服务", "做一个分布式系统小项目"]
     }
   },
-  "logic": "stage:$early,aim:$ai,pref:$any/python|stage:$early,aim:$web,pref:$job/java|stage:$early,aim:$web,pref:$easy/ts|stage:$early,aim:$system,pref:$deep/c|stage:$early,aim:$undecided,pref:$job/java|stage:$early,aim:$undecided,pref:$deep/c|stage:$late,aim:$web,pref:$job/java|stage:$late,aim:$web,pref:$easy/ts|stage:$late,aim:$ai,pref:$any/python|stage:$late,aim:$system,pref:$deep/c|stage:$late,aim:$system,pref:$job/go|stage:$late,aim:$undecided,pref:$deep/c|stage:$late,aim:$undecided,pref:$job/java|default:python"
+  "logic": "stage:$early,aim:$ai,pref:$any/python|stage:$early,aim:$web,pref:$job/java|stage:$early,aim:$web,pref:$easy/ts|stage:$early,aim:$web,pref:$deep/c|stage:$early,aim:$system,pref:$job/go|stage:$early,aim:$system,pref:$deep/c|stage:$early,aim:$system,pref:$easy/java|stage:$early,aim:$undecided,pref:$job/java|stage:$early,aim:$undecided,pref:$deep/c|stage:$early,aim:$undecided,pref:$easy/python|stage:$late,aim:$web,pref:$job/java|stage:$late,aim:$web,pref:$easy/ts|stage:$late,aim:$web,pref:$deep/c|stage:$late,aim:$ai,pref:$any/python|stage:$late,aim:$system,pref:$deep/c|stage:$late,aim:$system,pref:$job/go|stage:$late,aim:$system,pref:$easy/java|stage:$late,aim:$undecided,pref:$deep/c|stage:$late,aim:$undecided,pref:$job/java|stage:$late,aim:$undecided,pref:$easy/python|default:python"
 }
